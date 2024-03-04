@@ -32,20 +32,17 @@ for i = 2:n
     
 end
 JP = Ja+Jd; % Total plankton flux
-% Neumann boundary conditons:
+% Boundary conditons:
 JP(1) = 0;
 JP(end) = 0;
 
-% Advection+diffusion flux for nutrients:
-JaN = zeros(n+1,1);
-JdN = zeros(n+1,1);
+% Diffusion flux for nutrients:
+JN = zeros(n+1,1);
 for i = 2:n
-    JaN(i) = 0;
-    JdN(i) = -d*(N(i)-N(i-1))/dz;
+    JN(i) = -d*(N(i)-N(i-1))/dz;
     
 end
-JN = JaN+JdN; % Total nutrient flux
-% Neumann boundary conditions:
+% Boundary conditions:
 JN(1) = 0;
 JN(end) = -d*(ND-N(n-1))/dz;
 
